@@ -1,0 +1,15 @@
+name: Example
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+      - not-master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
